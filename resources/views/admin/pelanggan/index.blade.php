@@ -64,6 +64,17 @@
                                                     </svg>
                                                     Edit
                                                 </a>
+                                            {{-- Tombol & Form Hapus (Destroy) --}}
+                                                    <form action="{{ route('pelanggan.destroy', $item->pelanggan_id) }}"
+                                                          method="POST"
+                                                          onsubmit="return confirm('Apakah Anda yakin ingin menghapus data {{ $item->nama_pelanggan }}?')">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger btn-sm">
+                                                            <i class="bi bi-trash"></i> Hapus
+                                                        </button>
+                                                    </form>
+                                                </div>
                                             </td>
                                         </tr>
                                     @empty
