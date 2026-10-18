@@ -15,7 +15,7 @@ return new class extends Migration
         $table->increments('pelanggan_id');
         $table->string('nama_pelanggan', 100);
         $table->string('email')->unique();
-        $table->string('phone', 20)->nullable();
+        $table->string('no_hp', 20)->nullable();
         $table->text('alamat')->nullable();
         $table->timestamps();
         });

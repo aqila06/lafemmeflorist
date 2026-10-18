@@ -5,12 +5,12 @@ use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\BungaController;
 use App\Http\Controllers\KategoriController;
 
-// Halaman Guest 
+// Halaman Guest
 Route::get('/', function () {
     return view('guest.home');
 })->name('home');
 
-// Halaman Admin
+// Halaman Admin Dashboard
 Route::get('/dashboard', function () {
     return view('admin.dashboard');
 })->name('dashboard');

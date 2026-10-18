@@ -29,7 +29,7 @@
             <!-- Sidebar Lafemme Florist -->
             <div class="col-md-2 sidebar d-none d-md-block">
                 <div class="brand">
-                    <i class="bi bi-flower2 text-danger fs-3"></i>
+                    <img src="{{ asset('assets-admin/images/logo.png') }}" alt="Logo Lafemme Florist" class="img-fluid rounded-circle me-2" style="width: 38px; height: 38px; object-fit: cover;">
                     <div>
                         Lafemme Florist
                         <small>Admin Dashboard</small>
@@ -40,7 +40,7 @@
                         <a class="nav-link" href="{{ route('dashboard') }}"><i class="bi bi-speedometer2"></i> Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('pelanggan.index') }}"><i class="bi bi-people"></i> Pengguna / Pelanggan</a>
+                        <a class="nav-link active" href="{{ route('pelanggan.index') }}"><i class="bi bi-people"></i> Pelanggan</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('bunga.index') }}"><i class="bi bi-flower1"></i> Bunga</a>
@@ -57,7 +57,7 @@
                 <div class="top-navbar">
                     <div class="d-flex align-items-center gap-3">
                         <i class="bi bi-list fs-4 cursor-pointer text-muted"></i>
-                        <input type="text" class="form-control" style="width: 360px;" placeholder="Cari pengguna, pesanan, laporan">
+                        <input type="text" class="form-control" style="width: 360px;" placeholder="Cari pelanggan, pesanan, laporan">
                     </div>
                     <div class="d-flex align-items-center gap-3">
                         <i class="bi bi-moon fs-5 text-muted"></i>
@@ -73,8 +73,8 @@
                 <div class="p-4">
                     <div class="d-flex justify-content-between align-items-center mb-4">
                         <div>
-                            <span class="badge-pink text-uppercase">PENGGUNA</span>
-                            <h2 class="fw-bold mt-2 mb-1">Tambah Pengguna Baru</h2>
+                            <span class="badge-pink text-uppercase">PELANGGAN</span>
+                            <h2 class="fw-bold mt-2 mb-1">Tambah Pelanggan Baru</h2>
                             <p class="text-muted small">Tambahkan data pelanggan baru ke dalam database Lafemme Florist.</p>
                         </div>
                         <a href="{{ route('pelanggan.index') }}" class="btn btn-outline-secondary rounded-3">
@@ -85,7 +85,7 @@
                     <div class="row">
                         <div class="col-md-8">
                             <div class="card card-custom">
-                                <h5 class="fw-bold mb-3"><i class="bi bi-person-plus text-danger me-2"></i> Form Informasi Pengguna</h5>
+                                <h5 class="fw-bold mb-3"><i class="bi bi-person-plus text-danger me-2"></i> Form Informasi Pelanggan</h5>
 
                                 {{-- Display Alert Validasi --}}
                                 @if ($errors->any())
@@ -124,7 +124,7 @@
 
                                     <div class="d-flex justify-content-end gap-2">
                                         <a href="{{ route('pelanggan.index') }}" class="btn btn-light px-4">Batal</a>
-                                        <button type="submit" class="btn btn-pink">Simpan Pengguna</button>
+                                        <button type="submit" class="btn btn-pink">Simpan Pelanggan</button>
                                     </div>
                                 </form>
                             </div>

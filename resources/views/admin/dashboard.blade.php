@@ -38,13 +38,13 @@
           <span class="nav-icon"><i class="bi bi-speedometer2" aria-hidden="true"></i></span>
           <span class="nav-text">Dashboard</span>
         </a>
-        <a class="nav-link" href="users.html">
+        <a class="nav-link" href="{{ route('pelanggan.index') }}">
           <span class="nav-icon"><i class="bi bi-people" aria-hidden="true"></i></span>
-          <span class="nav-text">Pengguna</span>
+          <span class="nav-text">Pelanggan</span>
         </a>
-        <a class="nav-link" href="add-user.html">
+        <a class="nav-link" href="{{ route('pelanggan.create') }}">
           <span class="nav-icon"><i class="bi bi-person-plus" aria-hidden="true"></i></span>
-          <span class="nav-text">Tambah Pengguna</span>
+          <span class="nav-text">Tambah Pelanggan</span>
         </a>
         <a class="nav-link" href="profile.html">
           <span class="nav-icon"><i class="bi bi-person-badge" aria-hidden="true"></i></span>
@@ -108,7 +108,7 @@
           </button>
 
           <form class="d-none d-md-flex ms-3 flex-grow-1" role="search">
-            <input class="form-control search-input" type="search" placeholder="Cari pengguna, pesanan, laporan" aria-label="Search">
+            <input class="form-control search-input" type="search" placeholder="Cari pelanggan, pesanan, laporan" aria-label="Search">
           </form>
 
           <div class="navbar-actions ms-auto">
@@ -122,7 +122,7 @@
               </button>
               <div class="dropdown-menu dropdown-menu-end notification-menu">
                 <div class="dropdown-header fw-bold text-body">Notifications</div>
-                <a class="dropdown-item" href="users.html">
+                <a class="dropdown-item" href="{{ route('pelanggan.create') }}">
                   <span class="notification-title">New user registered</span>
                   <span class="notification-time">4 minutes ago</span>
                 </a>
@@ -226,7 +226,7 @@
 
       <div class="metric-meta">
         <span class="text-success">+5,1%</span>
-        <span>pelanggan aktif</span>
+        <span>Pelanggan aktif</span>
       </div>
     </article>
   </div>
@@ -340,20 +340,20 @@
                 
 <h2 class="h5 mb-1 section-title">
   <i class="bi bi-people" aria-hidden="true"></i>
-  <span>Pengguna Terbaru</span>
+  <span>Pelanggan Terbaru</span>
 </h2>
 <p class="text-muted mb-0">
   Aktivitas akun terbaru dalam sistem.
 </p>
-<a class="btn btn-outline-secondary btn-sm" href="users.html">
-  Kelola Pengguna
+<a class="btn btn-outline-secondary btn-sm" href="{{ route('pelanggan.create') }}">
+  Kelola Pelanggan
 </a>
 </div>
-              <a class="btn btn-outline-secondary btn-sm" href="users.html">Manage Users</a>
+              <a class="btn btn-outline-secondary btn-sm" href="{{ route('pelanggan.create') }}">Manage Users</a>
             </div>
             <div class="table-responsive">
               <table class="table align-middle mb-0">
-                <thead><tr><th scope="col">Pengguna</th><th scope="col">Peran</th><th scope="col">Tim</th><th scope="col">Status</th><th scope="col">Tanggal Bergabung</th><th scope="col" class="text-end">Aksi</th></tr></thead>
+                <thead><tr><th scope="col">Pelanggan</th><th scope="col">Peran</th><th scope="col">Tim</th><th scope="col">Status</th><th scope="col">Tanggal Bergabung</th><th scope="col" class="text-end">Aksi</th></tr></thead>
                 <tbody>
                   <tr>
                     <td>
