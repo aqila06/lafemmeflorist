@@ -12,8 +12,8 @@ class BungaController extends Controller
      */
     public function index()
     {
-        $bunga = Bunga::all(); 
-        
+        $bunga = Bunga::all();
+
         return view('admin.bunga.index', compact('bunga'));
     }
 
@@ -32,16 +32,16 @@ class BungaController extends Controller
     {
         $request->validate([
             'nama_bunga' => 'required|string|max:100',
-            'harga'      => 'required|numeric|min:0',
-            'stok'       => 'required|numeric|min:0',
-            'deskripsi'  => 'nullable|string',
+            'harga' => 'required|numeric|min:0',
+            'stok' => 'required|numeric|min:0',
+            'deskripsi' => 'nullable|string',
         ]);
 
         Bunga::create([
             'nama_bunga' => $request->nama_bunga,
-            'harga'      => $request->harga,
-            'stok'       => $request->stok,
-            'deskripsi'  => $request->deskripsi,
+            'harga' => $request->harga,
+            'stok' => $request->stok,
+            'deskripsi' => $request->deskripsi,
         ]);
 
         return redirect()->route('bunga.index')
@@ -59,17 +59,34 @@ class BungaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Bunga $bunga)
+    public function edit(string $id)
     {
-        //
+        $dataBunga = Bunga::findOrFail($id);
+        return view('admin.bunga.edit', compact('dataBunga'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Bunga $bunga)
+    public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'nama_bunga' => 'required|string|max:100',
+            'harga'      => 'required|numeric|min:0',
+            'stok'       => 'required|numeric|min:0',
+            'deskripsi'  => 'nullable|string',
+        ]);
+
+        $bunga = Bunga::findOrFail($id);
+        $bunga->update([
+            'nama_bunga' => $request->nama_bunga,
+            'harga'      => $request->harga,
+            'stok'       => $request->stok,
+            'deskripsi'  => $request->deskripsi,
+        ]);
+
+        return redirect()->route('bunga.index')
+            ->with('success', 'Data bunga berhasil diperbarui!');
     }
 
     /**

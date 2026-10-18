@@ -39,6 +39,7 @@
                                         <th>Harga</th>
                                         <th>Stok</th>
                                         <th>Deskripsi</th>
+                                        <th class="text-center">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -49,10 +50,16 @@
                                             <td>Rp {{ number_format($item->harga, 0, ',', '.') }}</td>
                                             <td>{{ $item->stok }}</td>
                                             <td>{{ $item->deskripsi ?? '-' }}</td>
+                                            <td class="text-center">
+                                                <a href="{{ route('bunga.edit', $item->bunga_id) }}"
+                                                    class="btn btn-info btn-sm text-white">
+                                                    <i class="bi bi-pencil-square"></i> Edit
+                                                </a>
+                                            </td>
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="5" class="text-center text-muted">Belum ada data bunga.</td>
+                                            <td colspan="6" class="text-center text-muted">Belum ada data bunga.</td>
                                         </tr>
                                     @endforelse
                                 </tbody>
