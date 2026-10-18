@@ -55,6 +55,14 @@
                                                     class="btn btn-info btn-sm text-white">
                                                     <i class="bi bi-pencil-square"></i> Edit
                                                 </a>
+                                                <form action="{{ route('bunga.destroy', $item->bunga_id) }}" method="POST"
+                                                    onsubmit="return confirm('Hapus data bunga ini?')">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm">
+                                                        <i class="bi bi-trash"></i> Hapus
+                                                    </button>
+                                                </form>
                                             </td>
                                         </tr>
                                     @empty

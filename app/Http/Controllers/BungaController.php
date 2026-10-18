@@ -92,8 +92,12 @@ class BungaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Bunga $bunga)
+    public function destroy(string $id)
     {
-        //
+        $bunga = Bunga::findOrFail($id);
+        $bunga->delete();
+
+        return redirect()->route('bunga.index')
+            ->with('success', 'Data bunga berhasil dihapus!');
     }
 }
