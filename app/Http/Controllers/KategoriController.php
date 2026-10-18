@@ -20,7 +20,7 @@ class KategoriController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.kategori.create');
     }
 
     /**
@@ -28,7 +28,16 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama_kategori' => 'required|string|max:100',
+        ]);
+
+        Kategori::create([
+            'nama_kategori' => $request->nama_kategori,
+        ]);
+
+        return redirect()->route('kategori.index')
+            ->with('success', 'Kategori berhasil ditambahkan!');
     }
 
     /**

@@ -51,6 +51,14 @@
           <span class="nav-icon"><i class="bi bi-plus-circle" aria-hidden="true"></i></span>
           <span class="nav-text">Tambah Bunga</span>
         </a>
+        <a class="nav-link" href="{{ route('kategori.index') }}">
+          <span class="nav-icon"><i class="bi bi-tags" aria-hidden="true"></i></span>
+          <span class="nav-text">Kategori</span>
+        </a>
+        <a class="nav-link" href="{{ route('kategori.create') }}">
+          <span class="nav-icon"><i class="bi bi-plus-circle" aria-hidden="true"></i></span>
+          <span class="nav-text">Tambah Kategori</span>
+        </a>
         <a class="nav-link" href="profile.html">
           <span class="nav-icon"><i class="bi bi-person-badge" aria-hidden="true"></i></span>
           <span class="nav-text">Profil</span>
