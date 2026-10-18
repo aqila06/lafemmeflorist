@@ -57,7 +57,7 @@
                 <div class="top-navbar">
                     <div class="d-flex align-items-center gap-3">
                         <i class="bi bi-list fs-4 cursor-pointer text-muted"></i>
-                        <input type="text" class="form-control" style="width: 360px;" placeholder="Cari pelanggan, pesanan, laporan">
+                        <input type="text" class="form-control" style="width: 360px;" placeholder="Cari pelanggan, bunga, kategori">
                     </div>
                     <div class="d-flex align-items-center gap-3">
                         <i class="bi bi-moon fs-5 text-muted"></i>

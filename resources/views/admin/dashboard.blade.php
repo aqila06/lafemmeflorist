@@ -122,7 +122,7 @@
           </button>
 
           <form class="d-none d-md-flex ms-3 flex-grow-1" role="search">
-            <input class="form-control search-input" type="search" placeholder="Cari pelanggan, pesanan, laporan"
+            <input class="form-control search-input" type="search" placeholder="Cari pelanggan, bunga, kategori"
               aria-label="Search">
           </form>
 
