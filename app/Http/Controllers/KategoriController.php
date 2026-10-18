@@ -31,12 +31,12 @@ class KategoriController extends Controller
     {
         $request->validate([
             'nama_kategori' => 'required|string|max:100',
-            'deskripsi'     => 'nullable|string',
+            'deskripsi' => 'nullable|string',
         ]);
 
         Kategori::create([
             'nama_kategori' => $request->nama_kategori,
-            'deskripsi'     => $request->deskripsi,
+            'deskripsi' => $request->deskripsi,
         ]);
 
         return redirect()->route('kategori.index')
@@ -67,13 +67,13 @@ class KategoriController extends Controller
     {
         $request->validate([
             'nama_kategori' => 'required|string|max:100',
-            'deskripsi'     => 'nullable|string',
+            'deskripsi' => 'nullable|string',
         ]);
 
         $kategori = Kategori::findOrFail($id);
         $kategori->update([
             'nama_kategori' => $request->nama_kategori,
-            'deskripsi'     => $request->deskripsi,
+            'deskripsi' => $request->deskripsi,
         ]);
 
         return redirect()->route('kategori.index')
@@ -83,8 +83,12 @@ class KategoriController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Kategori $kategori)
+    public function destroy(string $id)
     {
-        //
+        $kategori = Kategori::findOrFail($id);
+        $kategori->delete();
+
+        return redirect()->route('kategori.index')
+            ->with('success', 'Data kategori berhasil dihapus!');
     }
 }

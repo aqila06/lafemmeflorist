@@ -53,6 +53,15 @@
                                                         <i class="bi bi-pencil-square"></i> Edit
                                                     </a>
                                                 </div>
+                                                <form action="{{ route('kategori.destroy', $item->kategori_id) }}"
+                                                    method="POST"
+                                                    onsubmit="return confirm('Apakah Anda yakin ingin menghapus kategori ini?')">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm">
+                                                        <i class="bi bi-trash"></i> Hapus
+                                                    </button>
+                                                </form>
                                             </td>
                                         </tr>
                                     @empty
