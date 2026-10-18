@@ -1,38 +1,96 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar Pelanggan - Lafemme Florist</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f7f3f6; color: #333; }
+        .sidebar { min-height: 100vh; background-color: #1e2538; color: #fff; }
+        .sidebar .brand { font-weight: bold; font-size: 1.2rem; padding: 20px; color: #fff; display: flex; align-items: center; gap: 10px; }
+        .sidebar .brand small { font-size: 0.75rem; color: #aaa; display: block; }
+        .sidebar .nav-link { color: #a0aec0; padding: 12px 20px; font-weight: 500; display: flex; align-items: center; gap: 12px; border-radius: 8px; margin: 4px 15px; text-decoration: none; }
+        .sidebar .nav-link.active, .sidebar .nav-link:hover { background-color: #2d3748; color: #ffffff; }
+        .top-navbar { background: #ffffff; border-bottom: 1px solid #edf2f7; padding: 12px 30px; display: flex; justify-content: space-between; align-items: center; }
+        .card-custom { border: none; border-radius: 16px; background: #ffffff; box-shadow: 0 4px 20px rgba(0,0,0,0.03); padding: 28px; }
+        .btn-pink { background-color: #e65c8a; color: white; border: none; border-radius: 8px; padding: 10px 22px; font-weight: 600; }
+        .btn-pink:hover { background-color: #d44b79; color: white; }
+        .badge-pink { background-color: #fde8ef; color: #e65c8a; font-weight: 600; padding: 6px 12px; border-radius: 6px; }
+    </style>
 </head>
-
-<body class="bg-light">
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-10">
-
-                {{-- Alert Sukses --}}
-                @if (session('success'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        {{ session('success') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+<body>
+    <div class="container-fluid p-0">
+        <div class="row g-0">
+            <!-- Sidebar -->
+            <div class="col-md-2 sidebar d-none d-md-block">
+                <div class="brand">
+                    <img src="{{ asset('assets-admin/images/logo.png') }}" alt="Logo Lafemme Florist" class="img-fluid rounded-circle me-2" style="width: 38px; height: 38px; object-fit: cover;">
+                    <div>
+                        Lafemme Florist
+                        <small>Admin Dashboard</small>
                     </div>
-                @endif
+                </div>
+                <ul class="nav flex-column mt-3">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('dashboard') }}"><i class="bi bi-speedometer2"></i> Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ route('pelanggan.index') }}"><i class="bi bi-people"></i> Pelanggan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('bunga.index') }}"><i class="bi bi-flower1"></i> Bunga</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('kategori.index') }}"><i class="bi bi-tags"></i> Kategori</a>
+                    </li>
+                </ul>
+            </div>
 
-                <div class="card shadow-sm">
-                    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-                        <h4 class="mb-0">Daftar Pelanggan</h4>
-                        <a href="{{ route('pelanggan.create') }}" class="btn btn-light btn-sm fw-bold">
-                            <i class="bi bi-plus-circle"></i> Tambah Pelanggan
+            <!-- Main Content -->
+            <div class="col-md-10">
+                <!-- Top Navbar -->
+                <div class="top-navbar">
+                    <div class="d-flex align-items-center gap-3">
+                        <i class="bi bi-list fs-4 cursor-pointer text-muted"></i>
+                        <input type="text" class="form-control" style="width: 360px;" placeholder="Cari pelanggan, pesanan, laporan">
+                    </div>
+                    <div class="d-flex align-items-center gap-3">
+                        <i class="bi bi-moon fs-5 text-muted"></i>
+                        <i class="bi bi-bell fs-5 text-muted"></i>
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="badge bg-secondary-subtle text-dark p-2 rounded-circle fw-bold">AQ</span>
+                            <span class="fw-semibold">Admin Aqila</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Section -->
+                <div class="p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div>
+                            <span class="badge-pink text-uppercase">PELANGGAN</span>
+                            <h2 class="fw-bold mt-2 mb-1">Daftar Pelanggan</h2>
+                            <p class="text-muted small">Kelola data pelanggan yang terdaftar di Lafemme Florist.</p>
+                        </div>
+                        <a href="{{ route('pelanggan.create') }}" class="btn btn-pink rounded-3">
+                            <i class="bi bi-plus-lg me-1"></i> Tambah Pelanggan
                         </a>
                     </div>
-                    <div class="card-body">
+
+                    {{-- Alert Success Flash Data --}}
+                    @if (session('success'))
+                        <div class="alert alert-success alert-dismissible fade show rounded-3 mb-4" role="alert">
+                            {{ session('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
+
+                    <div class="card card-custom">
                         <div class="table-responsive">
-                            <table class="table table-striped table-hover align-middle">
-                                <thead class="table-dark">
+                            <table class="table table-hover align-middle mb-0">
+                                <thead class="table-light">
                                     <tr>
                                         <th>No</th>
                                         <th>Nama Pelanggan</th>
@@ -46,31 +104,19 @@
                                     @forelse ($pelanggan as $index => $item)
                                         <tr>
                                             <td>{{ $index + 1 }}</td>
-                                            <td>{{ $item->nama_pelanggan }}</td>
+                                            <td class="fw-semibold">{{ $item->nama_pelanggan }}</td>
                                             <td>{{ $item->email }}</td>
-                                            <td>{{ $item->no_hp }}</td> 
+                                            <td>{{ $item->no_hp }}</td>
                                             <td>{{ $item->alamat }}</td>
                                             <td class="text-center">
-                                                
-                                                <a href="{{ route('pelanggan.edit', $item->pelanggan_id) }}"
-                                                    class="btn btn-info btn-sm text-white">
-                                                    <svg class="icon icon-xs me-1" style="width:16px; height:16px;"
-                                                        data-slot="icon" fill="none" stroke-width="1.5"
-                                                        stroke="currentColor" viewBox="0 0 24 24"
-                                                        xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                            d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10">
-                                                        </path>
-                                                    </svg>
-                                                    Edit
-                                                </a>
-                                            {{-- Tombol & Form Hapus (Destroy) --}}
-                                                    <form action="{{ route('pelanggan.destroy', $item->pelanggan_id) }}"
-                                                          method="POST"
-                                                          onsubmit="return confirm('Apakah Anda yakin ingin menghapus data {{ $item->nama_pelanggan }}?')">
+                                                <div class="d-flex justify-content-center gap-2">
+                                                    <a href="{{ route('pelanggan.edit', $item->pelanggan_id) }}" class="btn btn-sm btn-outline-primary">
+                                                        <i class="bi bi-pencil"></i> Edit
+                                                    </a>
+                                                    <form action="{{ route('pelanggan.destroy', $item->pelanggan_id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus pelanggan ini?')">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger btn-sm">
+                                                        <button type="submit" class="btn btn-sm btn-outline-danger">
                                                             <i class="bi bi-trash"></i> Hapus
                                                         </button>
                                                     </form>
@@ -79,25 +125,17 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="6" class="text-center text-muted">Belum ada data pelanggan.</td>
+                                            <td colspan="6" class="text-center text-muted py-4">Belum ada data pelanggan.</td>
                                         </tr>
                                     @endforelse
                                 </tbody>
                             </table>
                         </div>
-
-                        <div class="mt-3">
-                            <a href="{{ route('dashboard') }}" class="btn btn-secondary">
-                                <i class="bi bi-arrow-left"></i> Kembali ke Dashboard
-                            </a>
-                        </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
