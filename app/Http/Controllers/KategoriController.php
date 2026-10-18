@@ -31,10 +31,12 @@ class KategoriController extends Controller
     {
         $request->validate([
             'nama_kategori' => 'required|string|max:100',
+            'deskripsi'     => 'nullable|string',
         ]);
 
         Kategori::create([
             'nama_kategori' => $request->nama_kategori,
+            'deskripsi'     => $request->deskripsi,
         ]);
 
         return redirect()->route('kategori.index')
@@ -52,17 +54,30 @@ class KategoriController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Kategori $kategori)
+    public function edit(string $id)
     {
-        //
+        $dataKategori = Kategori::findOrFail($id);
+        return view('admin.kategori.edit', compact('dataKategori'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Kategori $kategori)
+    public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'nama_kategori' => 'required|string|max:100',
+            'deskripsi'     => 'nullable|string',
+        ]);
+
+        $kategori = Kategori::findOrFail($id);
+        $kategori->update([
+            'nama_kategori' => $request->nama_kategori,
+            'deskripsi'     => $request->deskripsi,
+        ]);
+
+        return redirect()->route('kategori.index')
+            ->with('success', 'Kategori berhasil diperbarui!');
     }
 
     /**

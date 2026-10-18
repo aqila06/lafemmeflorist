@@ -34,8 +34,10 @@
                             <table class="table table-striped table-hover align-middle">
                                 <thead class="table-dark">
                                     <tr>
-                                        <th style="width: 10%;">No</th>
+                                        <th style="width: 5%;">No</th>
                                         <th>Nama Kategori</th>
+                                        <th>Deskripsi</th>
+                                        <th class="text-center" style="width: 20%;">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -43,10 +45,19 @@
                                         <tr>
                                             <td>{{ $index + 1 }}</td>
                                             <td>{{ $item->nama_kategori }}</td>
+                                            <td>{{ $item->deskripsi ?? '-' }}</td>
+                                            <td class="text-center">
+                                                <div class="d-flex justify-content-center gap-1">
+                                                    <a href="{{ route('kategori.edit', $item->kategori_id) }}"
+                                                        class="btn btn-info btn-sm text-white">
+                                                        <i class="bi bi-pencil-square"></i> Edit
+                                                    </a>
+                                                </div>
+                                            </td>
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="2" class="text-center text-muted">Belum ada data kategori.</td>
+                                            <td colspan="4" class="text-center text-muted">Belum ada data kategori.</td>
                                         </tr>
                                     @endforelse
                                 </tbody>
