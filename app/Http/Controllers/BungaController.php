@@ -20,7 +20,7 @@ class BungaController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.bunga.create');
     }
 
     /**
@@ -28,7 +28,22 @@ class BungaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama_bunga' => 'required|string|max:100',
+            'harga'      => 'required|numeric|min:0',
+            'stok'       => 'required|numeric|min:0',
+            'deskripsi'  => 'nullable|string',
+        ]);
+
+        Bunga::create([
+            'nama_bunga' => $request->nama_bunga,
+            'harga'      => $request->harga,
+            'stok'       => $request->stok,
+            'deskripsi'  => $request->deskripsi,
+        ]);
+
+        return redirect()->route('bunga.index')
+            ->with('success', 'Data bunga berhasil ditambahkan!');
     }
 
     /**
