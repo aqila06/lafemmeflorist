@@ -12,7 +12,9 @@ class BungaController extends Controller
      */
     public function index()
     {
-        //
+        $bunga = Bunga::all(); 
+        
+        return view('admin.bunga.index', compact('bunga'));
     }
 
     /**
