@@ -1,33 +1,30 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lafemme Florist - Admin</title>
-    @include('layouts.admin.css')
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lafemme Florist - Admin</title>
+  @include('layouts.admin.css')
 </head>
 <body>
-    <div class="container-fluid p-0">
-        <div class="row g-0">
-            <!-- Sidebar -->
-            <div class="col-md-2 sidebar d-none d-md-block">
-                @include('layouts.admin.sidebar')
-            </div>
+  <div class="admin-shell">
+    <aside class="admin-sidebar" id="adminSidebar">
+      @include('layouts.admin.sidebar')
+    </aside>
 
-            <!-- Main Content -->
-            <div class="col-md-10 d-flex flex-column min-vh-100">
-                @include('layouts.admin.header')
+    <div class="admin-main">
+      @include('layouts.admin.header')
 
-                <!-- Main Section Content -->
-                <div class="p-4 flex-grow-1">
-                    @yield('content')
-                </div>
-
-                <!-- Footer Included Here -->
-                @include('layouts.admin.footer')
-            </div>
+      <main class="dashboard-content">
+        <div class="container-fluid px-3 px-lg-4 py-4">
+          @yield('content')
         </div>
+      </main>
+
+      @include('layouts.admin.footer')
     </div>
-    @include('layouts.admin.js')
+  </div>
+
+  @include('layouts.admin.js')
 </body>
 </html>
