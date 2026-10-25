@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\BungaController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\UserController;
 
 // Halaman Guest
 Route::get('/', function () {
@@ -18,3 +19,5 @@ Route::get('/dashboard', function () {
 Route::resource('pelanggan', PelangganController::class);
 Route::resource('bunga', BungaController::class);
 Route::resource('kategori', KategoriController::class);
+
+Route::resource('user', UserController::class);
