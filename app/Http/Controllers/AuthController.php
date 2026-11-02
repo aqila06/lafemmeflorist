@@ -6,25 +6,26 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-    public function showLogin()
+    public function showLoginForm()
     {
         return view('guest.login');
     }
 
-    public function login(Request $request)
+    public function loginProcess(Request $request)
     {
-        // Validasi inputan form
         $request->validate([
             'username' => 'required',
             'password' => 'required',
         ]);
 
-        // Logika Soal 2: Jika username dan password bernilai sama persis
-        if ($request->username === $request->password) {
-            return redirect()->route('dashboard')->with('success', 'Selamat datang!');
+        $username = trim($request->input('username'));
+        $password = trim($request->input('password'));
+
+        // Logika Soal 2: Username harus sama persis dengan Password
+        if ($username !== '' && $username === $password) {
+            return redirect()->route('dashboard');
         }
 
-        // Jika username dan password berbeda
-        return redirect()->back()->withInput()->with('error', 'Username dan Password salah/tidak cocok!');
+        return back()->with('error', 'Username dan Password tidak cocok!')->withInput();
     }
 }

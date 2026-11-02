@@ -11,10 +11,18 @@ class Bunga extends Model
 
     protected $table = 'bunga';
     protected $primaryKey = 'bunga_id';
+    
     protected $fillable = [
+        'kategori_id', // Tambahkan kolom foreign key ini
         'nama_bunga',
         'harga',
         'stok',
         'deskripsi'
     ];
+
+    // Relasi Eloquent: Bunga milik satu Kategori
+    public function kategori()
+    {
+        return $this->belongsTo(Kategori::class, 'kategori_id', 'kategori_id');
+    }
 }

@@ -1,15 +1,18 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\BungaController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
+use App\Models\Bunga;
 
 // Halaman Guest
 Route::get('/', function () {
-    return view('guest.home');
+    $flowers = Bunga::with('kategori')->get();
+    return view('guest.home', compact('flowers'));
 })->name('home');
 
 // Halaman Admin Dashboard
@@ -20,25 +23,32 @@ Route::get('/dashboard', function () {
 Route::resource('pelanggan', PelangganController::class);
 Route::resource('bunga', BungaController::class);
 Route::resource('kategori', KategoriController::class);
-
 Route::resource('user', UserController::class);
-
-// Route Guest
-Route::get('/', function () {
-    return view('guest.home');
-})->name('home');
-
-Route::get('/auth', [AuthController::class, 'showLogin'])->name('login');
-Route::post('/auth', [AuthController::class, 'login'])->name('login.process');
 
 Route::get('/register', function () {
     return view('guest.register');
 })->name('register');
 
-Route::post('/register', function () {
-    return redirect()->route('login')->with('success', 'Registrasi berhasil, silakan login!');
+// Menyimpan data registrasi ke tabel pelanggan di database
+Route::post('/register', function (Illuminate\Http\Request $request) {
+    $request->validate([
+        'name'     => 'required|string|max:255',
+        'email'    => 'required|email',
+        'username' => 'required|string|max:100',
+        'password' => 'required',
+    ]);
+
+    DB::table('pelanggan')->insert([
+        'nama_pelanggan' => $request->name,
+        'email'          => $request->email,
+        'no_hp'          => '08123456789', // default
+        'alamat'         => 'jl. bata',     // default
+        'created_at'     => now(),
+        'updated_at'     => now(),
+    ]);
+
+    return redirect()->route('login')->with('success', 'Registrasi berhasil! Silakan login.');
 })->name('register.process');
 
-Route::get('/dashboard', function () {
-    return "<h1>Selamat Datang di Halaman Dashboard Admin!</h1>";
-})->name('dashboard');
+Route::get('/auth', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/auth', [AuthController::class, 'loginProcess'])->name('login.process');

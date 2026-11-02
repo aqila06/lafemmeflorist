@@ -1,20 +1,26 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <title>LaFemme Florist</title>
+    <title>@yield('title', 'LaFemme Florist')</title>
+
+    {{-- Partial CSS --}}
     @include('layouts.guest.css')
 </head>
 <body>
 
-  @include('layouts.guest.header')
+    {{-- Partial Header --}}
+    @include('layouts.guest.header')
 
-  <main>
-    @yield('content')
-  </main>
+    <!-- Main Content -->
+    <main>
+        @yield('content')
+    </main>
 
-  @include('layouts.guest.footer')
+    {{-- Partial Footer --}}
+    @include('layouts.guest.footer')
 
-  @include('layouts.guest.js')
+    {{-- Partial JS --}}
+    @include('layouts.guest.js')
 
 </body>
 </html>
